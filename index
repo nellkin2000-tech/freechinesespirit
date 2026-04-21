@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>觉醒 - Пробуди свой китайский | Курс для подростков</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* === VARIABLES & RESET === */
+        :root {
+            --bg-main: #C8AACC;
+            --bg-gradient-start: #C8AACC;
+            --bg-gradient-end: #D4B8D8;
+            --bg-alt: #EDE0F0;
+            --bg-card: #F5F0E8;
+            --text-primary: #4A3350;
+            --text-secondary: #7A6880;
+            --accent: #7B4F8C;
+            --white: #ffffff;
+            
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Raleway', sans-serif;
+            
+            --transition: all 0.3s ease;
+            --shadow-card: 0 8px 32px rgba(75, 50, 80, 0.12);
+            --radius-lg: 20px;
+            --radius-btn: 30px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--bg-card);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin-bottom: 20px; }
+        h2 { font-size: clamp(28px, 4vw, 36px); margin-bottom: 40px; text-align: center; }
+        p { margin-bottom: 16px; font-size: 16px; }
+        
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* === DECORATIVE ELEMENTS === */
+        .watermark {
+            position: absolute;
+            font-size: 300px;
+            color: var(--text-primary);
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1;
+            font-family: 'Noto Serif SC', serif; /* Fallback for generic serif if needed */
+        }
+
+        .flower-decor {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: 1;
+            fill: var(--accent);
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background-color: #6a427a;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--white);
+            transform: scale(1.03);
+        }
+
+        /* === HEADER === */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(200, 170, 204, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { font-size: 32px; color: var(--accent); }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* === HERO SECTION === */
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .hero-title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero-hanzi {
+            font-size: 60px;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .hero-tagline {
+            font-style: italic;
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+        }
+
+        /* === STUDENT PROFILES === */
+        #profiles {
+            background-color: var(--bg-card);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .profile-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .profile-info h3 { font-size: 20px; margin-bottom: 5px; }
+        .profile-meta { font-size: 14px; color: var(--text-secondary); }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--bg-alt);
+        }
+
+        .tab-btn {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            font-size: 15px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .pain-point {
+            margin-top: 15px;
+            padding: 10px;
+            background: var(--bg-alt);
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        /* === RESULTS (PYRAMID) === */
+        #results {
+            background-color: var(--bg-alt);
+        }
+
+        .pyramid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pyramid-level {
+            width: 100%;
+            padding: 15px 30px;
+            color: var(--white);
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            transition: var(--transition);
+            cursor: default;
+            clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Adjust widths to simulate pyramid visually while keeping full width on mobile for readability */
+        @media(min-width: 768px) {
+            .pyramid-level {
+                clip-path: none;
+                border-radius: 50px;
+                width: auto;
+                min-width: 300px;
+            }
+            .level-1 { width: 90%; background: #bfa3c9; }
+            .level-2 { width: 80%; background: #ad90ba; }
+            .level-3 { width: 70%; background: #9b7dab; }
+            .level-4 { width: 60%; background: #896a9c; }
+            .level-5 { width: 50%; background: #7B4F8C; }
+            .level-6 { width: 40%; background: #6a427a; }
+        }
+
+        .pyramid-level:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .level-title { font-weight: 700; display: block; margin-bottom: 5px; }
+        .level-desc { font-size: 14px; opacity: 0; height: 0; overflow: hidden; transition: var(--transition); }
+        .pyramid-level:hover .level-desc { opacity: 1; height: auto; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: var(--font-head);
+            display: block;
+        }
+
+        /* === FORMAT === */
+        #format {
+            background-color: var(--bg-card);
+        }
+
+        .format-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .format-block {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+        }
+
+        .format-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .step-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 3px solid var(--white);
+        }
+
+        .warmup-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .warmup-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* === PROGRAM (ACCORDION) === */
+        #program {
+            background-color: var(--bg-alt);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .accordion-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-family: var(--font-head);
+            font-size: 18px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-alt);
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .accordion-content ul li {
+            padding: 10px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .program-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .benefit-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* === TASK TYPES === */
+        #tasks {
+            background-color: var(--bg-card);
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .task-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .task-card:hover {
+            background: var(--bg-alt);
+            transform: translateY(-5px);
+        }
+
+        .task-card h4 {
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        /* === COMPARISON TABLE === */
+        #comparison {
+            background-color: var(--bg-alt);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-card);
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-alt);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .our-col {
+            background: var(--bg-alt);
+            font-weight: 600;
+            color: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .our-col th { color: var(--accent); }
+
+        /* === CTA & FOOTER === */
+        #cta {
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-primary);
+            padding-bottom: 40px;
+        }
+
+        .cta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .project-desc {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .rubric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .rubric-card {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .signup-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .steps-list {
+            margin-bottom: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-num {
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-btn {
+            width: 100%;
+            background: var(--white);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            font-size: 18px;
+        }
+
+        .form-btn:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .fine-print {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 15px;
+        }
+
+        footer {
+            background: var(--text-primary);
+            color: var(--bg-alt);
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-delay:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-delay:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-delay:nth-child(3) { transition-delay: 0.3s; }
+
+        /* === MEDIA QUERIES === */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-card);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .tasks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title-wrapper {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .hero-hanzi {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span>觉醒</span> Пробуди свой китайский
+            </a>
+            <div class="burger">☰</div>
+            <nav class="nav-menu">
+                <a href="#profiles" class="nav-link">О курсе</a>
+                <a href="#results" class="nav-link">Результаты</a>
+                <a href="#format" class="nav-link">Формат</a>
+                <a href="#program" class="nav-link">Программа</a>
+                <a href="#cta" class="nav-link btn btn-primary" style="padding: 8px 20px; color: white;">Записаться</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="watermark" style="top: 20%; right: 10%;">觉醒</div>
+        <div class="container hero-content">
+            <span class="hero-subtitle">Курс живого китайского для подростков</span>
+            <div class="hero-title-wrapper">
+                <h1>«Пробуди свой китайский»</h1>
+                <span class="hero-hanzi">觉醒</span>
+            </div>
+            <p class="hero-tagline">«Ты знаешь 400 слов — но молчишь на уроке. Это лечится.»</p>
+            
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Узнать больше</a>
+                <a href="#cta" class="btn btn-outline">Бесплатный урок</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Student Profiles -->
+    <section id="profiles">
+        <div class="container">
+            <h2 class="reveal">Узнай себя в одном из них</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--text-secondary);" class="reveal">Три истории — одна проблема. До курса и после.</p>
+            
+            <div class="profiles-grid">
+                <!-- Card 1 -->
+                <div class="profile-card reveal stagger-delay">
+                    <div class="profile-header">
+                        <div class="avatar">С</div>
+                        <div class="profile-info">
+                            <h3>София, 15 лет</h3>
+                            <div class="profile-meta">Москва, HSK 2</div>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-btn active" onclick="switchTab(this, 'before1')">До курса</div>
+                        <div class="tab-btn" onclick="switchTab(this, 'after1')">После курса</div>
+                    </div>
+                    <div id="before1" class="tab-content active">
+                        Знает ~300 слов, сдала HSK 2. Читает и пишет, но когда нужно говорить вслух — теряется. Боится ошибиться в тоне.
+                        <div class="pain-point">«Много знаю, но не могу использовать язык»</div>
+                    </div>
+                    <div id="after1" class="tab-content">
+                        Может без подготовки рассказать о хобби. Отвечает без задержки, даже если делает ошибки. Поверила, что её голос имеет право звучать.
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="profile-card reveal stagger-delay">
+                    <div class="profile-header">
+                        <div class="avatar">А</div>
+                        <div class="profile-info">
+                            <h3>Артём, 16 лет</h3>
+                            <div class="profile-meta">Санкт-Петербург</div>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-btn active" onclick="switchTab(this, 'before2')">До курса</div>
+                        <div class="tab-btn" onclick="switchTab(this, 'after2')">После курса</div>
+                    </div>
+                    <div id="before2" class="tab-content active">
+                        Учит год самостоятельно. Понимает больше, чем говорит. Не может поддержать диалог. Нет окружения.
+                        <div class="pain-point">«Язык только в пассивном режиме»</div>
+                    </div>
+                    <div id="after2" class="tab-content">
+                        Свободно использует разговорные фразы. Переписывается с носителями в Telegram. Превратил знания в навык.
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="profile-card reveal stagger-delay">
+                    <div class="profile-header">
+                        <div class="avatar">К</div>
+                        <div class="profile-info">
+                            <h3>Катя, 14 лет</h3>
+                            <div class="profile-meta">Екатеринбург</div>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-btn active" onclick="switchTab(this, 'before3')">До курса</div>
+                        <div class="tab-btn" onclick="switchTab(this, 'after3')">После курса</div>
+                    </div>
+                    <div id="before3" class="tab-content active">
+                        Скучно на уроках, учебники сухие. Мечтает стать айдолом, но не видит связи зубрёжки с жизнью.
+                        <div class="pain-point">«Учу два года, но не могу говорить»</div>
+                    </div>
+                    <div id="after3" class="tab-content">
+                        Китайский стал живым инструментом. Участвует в клубе, ведёт блог. Поняла, что это эмоции и юмор.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Pyramid -->
+    <section id="results">
+        <div class="watermark" style="bottom: 10%; left: 5%;">学</div>
+        <div class="container">
+            <h2 class="reveal">Что вы получите</h2>
+            
+            <div class="pyramid-container reveal">
+                <div class="pyramid-level level-6">
+                    <span class="level-title">6. СОЗДАНИЕ</span>
+                    <span class="level-desc">Запись 10-минутного видеовлога на китайском</span>
+                </div>
+                <div class="pyramid-level level-5">
+                    <span class="level-title">5. ОЦЕНКА</span>
+                    <span class="level-desc">Самоанализ записей, поиск и исправление ошибок</span>
+                </div>
+                <div class="pyramid-level level-4">
+                    <span class="level-title">4. АНАЛИЗ</span>
+                    <span class="level-desc">Сравнение своей речи с носителями, работа над произношением</span>
+                </div>
+                <div class="pyramid-level level-3">
+                    <span class="level-title">3. ПРИМЕНЕНИЕ</span>
+                    <span class="level-desc">Монолог 3-5 минут на новую тему без подготовки</span>
+                </div>
+                <div class="pyramid-level level-2">
+                    <span class="level-title">2. ПОНИМАНИЕ</span>
+                    <span class="level-desc">Ответы на вопросы без паузы (менее 3 секунд)</span>
+                </div>
+                <div class="pyramid-level level-1">
+                    <span class="level-title">1. ЗАПОМИНАНИЕ</span>
+                    <span class="level-desc">300+ слов и 45+ разговорных фраз в активе</span>
+                </div>
+            </div>
+
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <span class="stat-number">400</span>
+                    <span>Активных слов</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50</span>
+                    <span>Разговорных фраз</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">6</span>
+                    <span>Месяцев обучения</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">70%</span>
+                    <span>Времени — живая речь</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format -->
+    <section id="format">
+        <div class="container">
+            <h2 class="reveal">Как устроен курс</h2>
+            
+            <div class="format-wrapper reveal">
+                <div class="format-block">
+                    <span class="format-icon">📹</span>
+                    <h3>Синхронно</h3>
+                    <ul style="margin-top: 15px; list-style: disc; padding-left: 20px;">
+                        <li>48 занятий по 80 минут</li>
+                        <li>2 раза в неделю в Zoom</li>
+                        <li>Интерактивная доска Miro</li>
+                        <li>Живое общение с группой</li>
+                    </ul>
+                </div>
+                <div class="format-block">
+                    <span class="format-icon">📚</span>
+                    <h3>Асинхронно</h3>
+                    <ul style="margin-top: 15px; list-style: disc; padding-left: 20px;">
+                        <li>Платформа Edvibe</li>
+                        <li>Лонгриды и упражнения с автопроверкой</li>
+                        <li>Голосовые сообщения</li>
+                        <li>Творческие домашние задания</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline reveal">
+                <div class="timeline-line"></div>
+                <div class="timeline-steps">
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <strong>Warm-up</strong><br>5-7 мин
+                    </div>
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <strong>Материал</strong><br>Дунхуа/Влог
+                    </div>
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <strong>Практика</strong><br>Ролевые сцены
+                    </div>
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <strong>Рефлексия</strong><br>Итоги урока
+                    </div>
+                </div>
+            </div>
+
+            <div class="warmup-cards reveal">
+                <div class="warmup-card">
+                    <h4>🐱 Мемный котёнок</h4>
+                    <p>«Какой ты мемный котёнок сегодня? Объясни по-китайски»</p>
+                </div>
+                <div class="warmup-card">
+                    <h4>🏦 Банка счастья</h4>
+                    <p>«Добавь в общую банку то, что делает тебя счастливым»</p>
+                </div>
+                <div class="warmup-card">
+                    <h4>✈️ Каникулы</h4>
+                    <p>«Выбери активности на каникулах и объясни почему»</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section id="program">
+        <div class="container">
+            <h2 class="reveal">Программа курса</h2>
+            <p style="text-align: center; margin-bottom: 30px;" class="reveal">5 тематических блоков, каждый — 3 взаимосвязанные подтемы</p>
+
+            <div class="accordion reveal">
+                <!-- Block 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">БЛОК 1: Я и мои интересы</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Мои хобби</li>
+                            <li>Персонаж, который похож на меня</li>
+                            <li>Мои мечты</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Block 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">БЛОК 2: Я и окружение</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Моя семья</li>
+                            <li>Мои друзья</li>
+                            <li>Домашние животные</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Block 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">БЛОК 3: Я и город</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Моё любимое место в городе</li>
+                            <li>Город, куда я хочу поехать</li>
+                            <li>Достопримечательности</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Block 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">БЛОК 4: Я и еда</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Моё любимое блюдо и напиток</li>
+                            <li>В кофейне/ресторане</li>
+                            <li>Готовим вместе</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Block 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">БЛОК 5: Я и Китай</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Ассоциации с Китаем</li>
+                            <li>Китайские праздники</li>
+                            <li>Китайский этикет</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-benefits reveal">
+                <div class="benefit-item">
+                    <span class="benefit-icon">📖</span>
+                    <strong>Лексика</strong><br>350-400 слов
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">👂</span>
+                    <strong>Аудирование</strong><br>Понимание речи
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🗣️</span>
+                    <strong>Спонтанность</strong><br>Монологи и влоги
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🏗️</span>
+                    <strong>Структура</strong><br>Логика речи
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🎬</span>
+                    <strong>Проект</strong><br>Итоговый влог
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task Types -->
+    <section id="tasks">
+        <div class="container">
+            <h2 class="reveal">6 типов заданий на каждом занятии</h2>
+            <div class="tasks-grid reveal">
+                <div class="task-card">
+                    <h4>1. Автоматизация</h4>
+                    <p>Подстановочные задания на Edvibe и Miro, отработка порядка слов.</p>
+                </div>
+                <div class="task-card">
+                    <h4>2. Аутентичные материалы</h4>
+                    <p>Фрагменты влогов, дунхуа (аниме), маньхуа (комиксы).</p>
+                </div>
+                <div class="task-card">
+                    <h4>3. Ролевые сцены</h4>
+                    <p>Группы 3-4 человека, ситуации из реальной жизни, 5 мин на подготовку.</p>
+                </div>
+                <div class="task-card">
+                    <h4>4. Дебаты</h4>
+                    <p>Спорный тезис, команды «за» и «против», аргументация.</p>
+                </div>
+                <div class="task-card">
+                    <h4>5. Рефлексия</h4>
+                    <p>Чек-лист тревожности, промежуточный монолог после блока.</p>
+                </div>
+                <div class="task-card">
+                    <h4>6. Творчество</h4>
+                    <p>Коллаж/Pinterest-доска + итоговый видеовлог.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section id="comparison">
+        <div class="container">
+            <h2 class="reveal">Чем мы отличаемся</h2>
+            <div class="table-wrapper reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Критерий</th>
+                            <th>НиХаоМа / Институт</th>
+                            <th>Репетитор</th>
+                            <th class="our-col">Наш курс</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Цель</strong></td>
+                            <td>HSK и ЕГЭ</td>
+                            <td>По запросу / HSK</td>
+                            <td class="our-col">Живое общение</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Материалы</strong></td>
+                            <td>Учебники</td>
+                            <td>Зависит от педагога</td>
+                            <td class="our-col">Дунхуа, 小红书, блоги</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Говорение</strong></td>
+                            <td>Мало (упор на тесты)</td>
+                            <td>Есть (1 на 1)</td>
+                            <td class="our-col">70% времени урока</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Цена</strong></td>
+                            <td>от 2000-3000 ₽/час</td>
+                            <td>от 2000-3000 ₽/час</td>
+                            <td class="our-col">Выгоднее (группа)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Final Project -->
+    <section id="cta">
+        <div class="watermark" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">说</div>
+        <div class="container cta-container">
+            <div class="project-desc reveal">
+                <h2>Итоговый проект: «Мой влог»</h2>
+                <p>10-минутное видео в стиле настоящего китайского блогера. Студент показывает свой мир: прогулка, встреча с другом, готовка или рассказ о Китае.</p>
+                <p><strong>Главное правило:</strong> говорить свободно, без листочка.</p>
+                
+                <div class="rubric-grid">
+                    <div class="rubric-card">
+                        <strong>Объём:</strong> 10+ мин, 20+ фраз
+                    </div>
+                    <div class="rubric-card">
+                        <strong>Лексика:</strong> Из всех 5 блоков
+                    </div>
+                    <div class="rubric-card">
+                        <strong>Структура:</strong> Вступление + тело + финал
+                    </div>
+                    <div class="rubric-card">
+                        <strong>Спонтанность:</strong> Без чтения по бумажке
+                    </div>
+                </div>
+            </div>
+
+            <div class="signup-form reveal">
+                <h3>Начни с бесплатного урока</h3>
+                <ul class="steps-list" style="margin: 20px 0;">
+                    <li><span class="step-num">1</span> Бесплатный вводный урок</li>
+                    <li><span class="step-num">2</span> Онлайн-тест на уровень</li>
+                    <li><span class="step-num">3</span> Старт в группе</li>
+                </ul>
+                <form onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.');">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-input" placeholder="Телефон или Email" required>
+                    </div>
+                    <button type="submit" class="btn form-btn">Записаться</button>
+                </form>
+                <p class="fine-print">По окончании курса — сертификат на английском языке</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Гладких Мария Владимировна. Курс «Пробуди свой китайский».</p>
+        </div>
+    </footer>
+
+    <script>
+        // === Mobile Menu Toggle ===
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger.textContent = '☰';
+            });
+        });
+
+        // === Tabs Logic ===
+        function switchTab(btn, contentId) {
+            const parent = btn.closest('.profile-card');
+            const tabs = parent.querySelectorAll('.tab-btn');
+            const contents = parent.querySelectorAll('.tab-content');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(contentId).classList.add('active');
+        }
+
+        // === Accordion Logic ===
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = header.nextElementSibling;
+            const isActive = item.classList.contains('active');
+
+            // Close all others
+            document.querySelectorAll('.accordion-item').forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.accordion-content').style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // === Scroll Animations (Intersection Observer) ===
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // === Active Nav Link on Scroll ===
+        const sections = document.querySelectorAll('section');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
